@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebASP.Data.EF;
 
 namespace WebASP.Data.Migrations
 {
     [DbContext(typeof(WebASPDbContext))]
-    partial class WebASPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230621091331_SeedIdentity")]
+    partial class SeedIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,7 +182,7 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "fb4fa78e-7ecb-477d-a94b-69898e182c63",
+                            ConcurrencyStamp = "fb7101df-3f2a-4be6-bf28-483b91e78276",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -257,7 +259,7 @@ namespace WebASP.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ed321e92-d7e2-44d9-b550-8eaf96c6f536",
+                            ConcurrencyStamp = "617e2c36-2a78-4e7f-8734-ea362f570837",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "quang2001linh@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +268,7 @@ namespace WebASP.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "quang2001linh@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN4lP7t4zNv7OJeEU3dnUL362je59/bHCAJwr4oy3bvd7C5eypNsmIfxq/4coV4kUQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPN/giE9XcvMFY3oC34qy7nwY4HZRtn9sA9JBV1nNh41mSWSH2EWmGKp+Uj3StC3tw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -367,16 +369,13 @@ namespace WebASP.Data.Migrations
 
                     b.Property<string>("SeoAlias")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeoDescription")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeoTitle")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -508,25 +507,16 @@ namespace WebASP.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShipAddress")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShipEmail")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShipName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShipPhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -599,50 +589,12 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 6, 23, 9, 16, 58, 434, DateTimeKind.Local).AddTicks(2017),
+                            DateCreated = new DateTime(2023, 6, 21, 16, 13, 30, 594, DateTimeKind.Local).AddTicks(295),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
                             ViewCount = 0
                         });
-                });
-
-            modelBuilder.Entity("WebASP.Data.Entities.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Caption")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("FileSize")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("WebASP.Data.Entities.ProductInCategory", b =>
@@ -885,17 +837,6 @@ namespace WebASP.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebASP.Data.Entities.ProductImage", b =>
-                {
-                    b.HasOne("WebASP.Data.Entities.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("WebASP.Data.Entities.ProductInCategory", b =>
                 {
                     b.HasOne("WebASP.Data.Entities.Category", "Category")
@@ -976,8 +917,6 @@ namespace WebASP.Data.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("OrderDetails");
-
-                    b.Navigation("ProductImages");
 
                     b.Navigation("ProductInCategories");
 

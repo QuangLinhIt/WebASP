@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebASP.Data.EF;
 
 namespace WebASP.Data.Migrations
 {
     [DbContext(typeof(WebASPDbContext))]
-    partial class WebASPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230623021659_ChangeImages")]
+    partial class ChangeImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

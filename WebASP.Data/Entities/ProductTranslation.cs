@@ -17,7 +17,7 @@ namespace WebASP.Data.Entities
         public string SeoTitle { set; get; }
 
         public string SeoAlias { get; set; }
-        public int LanguageId { set; get; }
+        public string LanguageId { set; get; }
 
         public Product Product { get; set; }
 

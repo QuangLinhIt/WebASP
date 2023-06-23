@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using WebASP.Data.Configuration;
 using WebASP.Data.Entities;
+using WebASP.Data.Extensions;
 
 namespace WebASP.Data.EF
 {
-    public class WebASPDbContext : DbContext
+    public class WebASPDbContext : IdentityDbContext<AppUser,AppRole,Guid>
     {
         public WebASPDbContext( DbContextOptions options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //configure using Fluent Api
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
@@ -29,8 +33,22 @@ namespace WebASP.Data.EF
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
 
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
 
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
+            //data seeding
+            //modelBuilder.Entity<AppConfig>().HasData(
+            //    new AppConfig() { Key = "HomeTitle", Value = "This is home page of Quang Linh Web" },
+            //    new AppConfig() { Key="HoneKeyword",Value="Thid is description of Quang Linh Web "}
+            //    );
+            modelBuilder.Seed();
             // base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }
@@ -57,6 +75,8 @@ namespace WebASP.Data.EF
 
 
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+
 
     }
 }
