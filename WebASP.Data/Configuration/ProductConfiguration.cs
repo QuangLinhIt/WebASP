@@ -16,8 +16,8 @@ namespace WebASP.Data.Configuration
             builder.ToTable("Products");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.Price).IsRequired();
-            builder.Property(x => x.OriginalPrice).IsRequired();
+            builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,4)");
+            builder.Property(x => x.OriginalPrice).IsRequired().HasColumnType("decimal(18,4)");
             builder.Property(x => x.Stock).IsRequired().HasDefaultValue(0);
             builder.Property(x => x.ViewCount).IsRequired().HasDefaultValue(0);
         }

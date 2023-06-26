@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebASP.Application.Catalog.Products;
+using WebASP.Application.Common;
 using WebASP.Data.EF;
 using WebASP.Utilities.Constants;
 
@@ -33,6 +34,9 @@ namespace WebASP.BackendAPI
 
             //declare di
             services.AddTransient<IPublicProductService, PublicProductService>();
+            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IStorageService, FileStorageService>();
+
             services.AddControllersWithViews();
 
             //Swagger connect

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace WebASP.Data.Entities
         public DateTime ToDate { set; get; }
         public bool ApplyForAll { set; get; }
         public int? DiscountPercent { set; get; }
+        [Column(TypeName = "decimal(18,4)")]
         public decimal? DiscountAmount { set; get; }
         public string ProductIds { set; get; }
         public string ProductCategoryIds { set; get; }

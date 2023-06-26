@@ -10,8 +10,8 @@ using WebASP.Data.EF;
 namespace WebASP.Data.Migrations
 {
     [DbContext(typeof(WebASPDbContext))]
-    [Migration("20230623015702_ChangeImage")]
-    partial class ChangeImage
+    [Migration("20230623083520_UpdateData")]
+    partial class UpdateData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -182,7 +182,7 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "97a447ee-261b-4891-b079-490d17fa63be",
+                            ConcurrencyStamp = "e52ab90c-d308-4d9e-b40e-83a0ff493650",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -259,7 +259,7 @@ namespace WebASP.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "56a17015-c833-45d7-81cc-8f77b88e7f13",
+                            ConcurrencyStamp = "7d6ac927-7c67-4b3a-ba7d-80872a69b2fb",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "quang2001linh@gmail.com",
                             EmailConfirmed = true,
@@ -268,7 +268,7 @@ namespace WebASP.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "quang2001linh@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJHAeKXoARgR6oB22qUz3DVDDDEQmgjrpaLHR7+uaMHOLFpmezhQy6SpXRRPxYhldA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHevrq8J1SRe5rYz8vMT62IFv1bwtec4w6A+M365z2wEG0UfzRn9zG4wyyVt4mG04A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -601,7 +601,7 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 6, 23, 8, 57, 1, 677, DateTimeKind.Local).AddTicks(5586),
+                            DateCreated = new DateTime(2023, 6, 23, 15, 35, 19, 318, DateTimeKind.Local).AddTicks(1181),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
