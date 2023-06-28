@@ -21,7 +21,7 @@ namespace WebASP.Application.Catalog.Products
         Task<bool> UpdateStock(int productId, int addedQuantity);
         Task<ProductViewModel> GetById(int productId, string languageId);
 
-        Task<int> AddImage(int productId, ProductImageCreateRequest request);
+        Task<int> AddImage( ProductImageCreateRequest request);
         Task<int> UpdateImage(ProductImageUpdateRequest request);
         Task<int> DeleteImage(int imageId);
         Task<ProductImageViewModel>GetImageById(int imageId);

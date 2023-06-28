@@ -180,7 +180,7 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "e52ab90c-d308-4d9e-b40e-83a0ff493650",
+                            ConcurrencyStamp = "aa0d0fab-fcc8-4e7a-bbe6-3d0350dbd8a1",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -257,7 +257,7 @@ namespace WebASP.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7d6ac927-7c67-4b3a-ba7d-80872a69b2fb",
+                            ConcurrencyStamp = "9c056875-87fd-4c11-b569-2daa6f027dec",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "quang2001linh@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +266,7 @@ namespace WebASP.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "quang2001linh@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHevrq8J1SRe5rYz8vMT62IFv1bwtec4w6A+M365z2wEG0UfzRn9zG4wyyVt4mG04A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFrTlxryRTAFIOY4yKzn4h5Lqhb82sS4JuU4R0vcjHY6D70cDD7Nqd9ySe5k9Fl6Rw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -285,7 +285,7 @@ namespace WebASP.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -550,7 +550,7 @@ namespace WebASP.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -573,10 +573,10 @@ namespace WebASP.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("OriginalPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("SeoAlias")
                         .HasColumnType("nvarchar(max)");
@@ -599,7 +599,7 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 6, 23, 15, 35, 19, 318, DateTimeKind.Local).AddTicks(1181),
+                            DateCreated = new DateTime(2023, 6, 26, 16, 3, 8, 656, DateTimeKind.Local).AddTicks(2809),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -749,7 +749,7 @@ namespace WebASP.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal?>("DiscountAmount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int?>("DiscountPercent")
                         .HasColumnType("int");
@@ -785,14 +785,14 @@ namespace WebASP.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("ExternalTransactionId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Fee")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");

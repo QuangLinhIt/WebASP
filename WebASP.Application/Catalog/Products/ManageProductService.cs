@@ -11,6 +11,7 @@ using WebASP.Application.Common;
 using WebASP.Data.EF;
 using WebASP.Data.Entities;
 using WebASP.Utilities.Exceptions;
+using WebASP.ViewModels.Catalog.ProductImage;
 using WebASP.ViewModels.Catalog.Products;
 using WebASP.ViewModels.Common;
 
@@ -25,6 +26,7 @@ namespace WebASP.Application.Catalog.Products
             _context = context;
             _storageService = storageService;
         }
+        //API PRODUCT=======================================================================================================================
         public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
@@ -120,7 +122,7 @@ namespace WebASP.Application.Catalog.Products
         {
             var product = await _context.Products.FindAsync(request.Id);
             var productTranSlations = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
-            if (product == null) throw new WebASPException($"cannot find a product with id:{request.Id}");
+            if (product == null || productTranSlations==null) throw new WebASPException($"cannot find a product with id:{request.Id}");
 
             productTranSlations.Name = request.Name;
             productTranSlations.SeoAlias = request.SeoAlias;
@@ -214,5 +216,87 @@ namespace WebASP.Application.Catalog.Products
             };
             return productViewModel;
         }
+
+        public async Task<int> AddImage( ProductImageCreateRequest request)
+        {
+            var productImage = new ProductImage()
+            {
+                Caption = request.Caption,
+                IsDefault = request.IsDefault,
+                DateCreated = DateTime.Now,
+                SortOrder = request.SortOrder,
+                ProductId = request.ProductId
+            };
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
+            _context.ProductImages.Add(productImage);
+            await _context.SaveChangesAsync();
+            return productImage.Id;
+        }
+
+        public async Task<int> UpdateImage(ProductImageUpdateRequest request)
+        {
+            var productImage = await _context.ProductImages.FindAsync(request.Id);
+            if (productImage == null) throw new WebASPException($"cannot find an image With id :{request.Id}");
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+                productImage.Caption = request.Caption;
+                productImage.DateCreated = DateTime.Now;
+                productImage.IsDefault = request.IsDefault;
+                productImage.SortOrder = request.SortOrder;
+            }
+            _context.ProductImages.Update(productImage);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> DeleteImage(int imageId)
+        {
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null) throw new WebASPException($"cannot find an image with id :{imageId}");
+            _context.ProductImages.Remove(productImage);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<ProductImageViewModel> GetImageById(int imageId)
+        {
+            var imageView = await _context.ProductImages.FindAsync(imageId);
+            if (imageView == null) throw new WebASPException($"cannot image with id:{imageId}");
+            var viewlImage = new ProductImageViewModel()
+            {
+                Id = imageId,
+                Caption = imageView.Caption,
+                ImagePath = imageView.ImagePath,
+                FileSize = imageView.FileSize,
+                IsDefault = imageView.IsDefault,
+                ProductId = imageView.ProductId,
+                SortOrder = imageView.SortOrder,
+                DateCreated = imageView.DateCreated
+            };
+            return viewlImage;
+        }
+
+        public async Task<List<ProductImageViewModel>> GetListImageById(int productId)
+        {
+            var listImage = await _context.ProductImages.Where(x => x.ProductId == productId)
+                 .Select(x => new ProductImageViewModel()
+                 {
+                     Caption = x.Caption,
+                     SortOrder = x.SortOrder,
+                     IsDefault = x.IsDefault,
+                     Id = x.Id,
+                     ProductId = x.ProductId,
+                     DateCreated = x.DateCreated
+                 }).ToListAsync();
+            return listImage;
+
+        }
+
+        //API IMAGE=========================================================================================================================
+
     }
 }
