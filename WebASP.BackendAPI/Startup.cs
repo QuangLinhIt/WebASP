@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +21,7 @@ using WebASP.Application.System.Users;
 using WebASP.Data.EF;
 using WebASP.Data.Entities;
 using WebASP.Utilities.Constants;
+using WebASP.ViewModels.System.Users;
 
 namespace WebASP.BackendAPI
 {
@@ -46,8 +49,9 @@ namespace WebASP.BackendAPI
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
-
-            services.AddControllers();
+            //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+            //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             //Swagger connect
             services.AddSwaggerGen(c =>
