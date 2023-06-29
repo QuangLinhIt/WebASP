@@ -56,8 +56,7 @@ namespace WebASP.Data.Migrations
                 name: "Languages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     IsDefault = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -154,7 +153,7 @@ namespace WebASP.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     SeoDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeoTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LanguageId = table.Column<int>(type: "int", nullable: false),
+                    LanguageId = table.Column<string>(type: "varchar(5)", nullable: true),
                     SeoAlias = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -171,7 +170,7 @@ namespace WebASP.Data.Migrations
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -260,7 +259,7 @@ namespace WebASP.Data.Migrations
                     SeoDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeoTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    LanguageId = table.Column<int>(type: "int", nullable: false)
+                    LanguageId = table.Column<string>(type: "varchar(5)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,7 +269,7 @@ namespace WebASP.Data.Migrations
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductTranslations_Products_ProductId",
                         column: x => x.ProductId,

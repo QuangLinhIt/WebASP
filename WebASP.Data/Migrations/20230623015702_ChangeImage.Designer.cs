@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebASP.Data.EF;
 
 namespace WebASP.Data.Migrations
 {
     [DbContext(typeof(WebASPDbContext))]
-    partial class WebASPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230623015702_ChangeImage")]
+    partial class ChangeImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,7 +182,7 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "fb4fa78e-7ecb-477d-a94b-69898e182c63",
+                            ConcurrencyStamp = "97a447ee-261b-4891-b079-490d17fa63be",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -257,7 +259,7 @@ namespace WebASP.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ed321e92-d7e2-44d9-b550-8eaf96c6f536",
+                            ConcurrencyStamp = "56a17015-c833-45d7-81cc-8f77b88e7f13",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "quang2001linh@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +268,7 @@ namespace WebASP.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "quang2001linh@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN4lP7t4zNv7OJeEU3dnUL362je59/bHCAJwr4oy3bvd7C5eypNsmIfxq/4coV4kUQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJHAeKXoARgR6oB22qUz3DVDDDEQmgjrpaLHR7+uaMHOLFpmezhQy6SpXRRPxYhldA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -599,7 +601,7 @@ namespace WebASP.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 6, 23, 9, 16, 58, 434, DateTimeKind.Local).AddTicks(2017),
+                            DateCreated = new DateTime(2023, 6, 23, 8, 57, 1, 677, DateTimeKind.Local).AddTicks(5586),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

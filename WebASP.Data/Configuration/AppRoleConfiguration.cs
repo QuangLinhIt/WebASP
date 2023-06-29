@@ -9,13 +9,12 @@ using WebASP.Data.Entities;
 
 namespace WebASP.Data.Configuration
 {
-  public  class AppConfigConfiguration : IEntityTypeConfiguration<AppConfig>
+    public class AppRoleConfiguration : IEntityTypeConfiguration<AppRole>
     {
-        public void Configure(EntityTypeBuilder<AppConfig> builder)
+        public void Configure(EntityTypeBuilder<AppRole> builder)
         {
-            builder.ToTable("AppConfigs");
-            builder.HasKey(x => x.Key);
-            builder.Property(x => x.Value).IsRequired(true);
+            builder.ToTable("AppRoles");
+            builder.Property(x => x.Description).IsRequired().HasMaxLength(200);
         }
     }
 }

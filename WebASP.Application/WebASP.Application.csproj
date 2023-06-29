@@ -4,4 +4,15 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebASP.Data\WebASP.Data.csproj" />
+    <ProjectReference Include="..\WebASP.Utilities\WebASP.Utilities.csproj" />
+    <ProjectReference Include="..\WebASPViewModels\WebASP.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
