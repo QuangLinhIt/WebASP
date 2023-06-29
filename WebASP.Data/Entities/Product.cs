@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace WebASP.Data.Entities
     public class Product
     {
         public int Id { set; get; }
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Price { set; get; }
         public decimal OriginalPrice { set; get; }
         public int Stock { set; get; }
@@ -24,6 +26,5 @@ namespace WebASP.Data.Entities
 
         public List<ProductTranslation> ProductTranslations { get; set; }
         public List<ProductImage> ProductImages { get; set; }
-
     }
 }

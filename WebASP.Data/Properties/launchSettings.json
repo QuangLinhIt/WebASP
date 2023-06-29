@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WebASP.Data": {
+      "commandName": "Project",
+      "sqlDebugging": false,
+      "nativeDebugging": true,
+      "jsWebView2Debugging": false
+    }
+  }
+}
